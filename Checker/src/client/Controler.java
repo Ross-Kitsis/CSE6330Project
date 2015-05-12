@@ -1,6 +1,9 @@
 package client;
 
+import issues.Error;
 import issues.Issue;
+import issues.LikelyProblem;
+import issues.PotentialProblem;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +11,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -135,10 +140,34 @@ public class Controler extends HttpServlet {
 				XMLCreator xc = (XMLCreator) this.getServletContext().getAttribute("xmlCreator");
 				xc.createXML(location, ew);
 				
+				Map<Integer,Error> errors = new TreeMap<Integer,Error>();
+				Map<Integer,PotentialProblem> pp = new TreeMap<Integer,PotentialProblem>();
+				Map<Integer,LikelyProblem> lp = new TreeMap<Integer,LikelyProblem>();
+				
+				Set<Integer> keys = issues.keySet();
+				for(int key:keys)
+				{
+					Issue i = issues.get(key);
+					if(i instanceof issues.Error)
+					{
+						errors.put(key, (Error) i);
+					}else if(i instanceof issues.PotentialProblem)
+					{
+						pp.put(key, (PotentialProblem) i);
+					}else if(i instanceof issues.LikelyProblem)
+					{
+						lp.put(key, (LikelyProblem) i);
+					}
+				}
+				
+				
 				/*
 				 * Add the error wrapper to the request scope to allow results.jspx to parse it
 				 */
 				request.setAttribute("results", ew);
+				request.setAttribute("errors", errors);
+				request.setAttribute("potential", pp);
+				request.setAttribute("likely", lp);
 				
 				/*
 				 * Set the results.jspx page as the page to forward the user to

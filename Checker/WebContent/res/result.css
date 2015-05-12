@@ -7,3 +7,92 @@ tr.header
 {
     cursor:pointer;
 }
+
+#sidebar-wrapper {
+    width: 50%;
+    height: auto;
+    float: left;
+    position: relative; 
+}   
+
+#sidebar-left {
+    width: 800px;
+    height: auto;
+    font-size: 14px;
+    background: #ff8000;
+    border-right: 10px solid #333;
+}
+
+#sidebar-left li {
+  list-style: none;
+}
+
+.submenu-ebene1 {
+  background: #ff8000;
+  border-bottom: 1px solid #222;
+  font-size: 1em;
+  font-weight: normal;
+  cursor: pointer;
+  display: block;
+}
+
+.last.closed {
+  border-bottom: none;
+}
+
+.submenu-ebene2 {  
+  font-size: 1em;
+  font-weight: normal;
+  background: #222;
+  color: #ccc;
+}
+
+.submenu-ebene3 {  
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-left: 0px;
+  cursor: pointer;
+  background: #222;
+  color: #ccc;
+}
+
+.submenu-ebene3 li {  
+  padding-left: 30px;
+}
+
+.link, .single-link {
+  border-bottom: 1px dotted #222;
+  padding: 10px;
+}
+
+.link.last, .single-link.last {
+  border-bottom: none;
+  margin-bottom: 10px;
+}
+
+.active {
+  background: #333;
+  color: #ccc;
+}
+
+.inactive {
+    color: #333;
+    -o-transition:.2s linear;
+    -ms-transition:.2s linear;
+    -moz-transition:.2s linear;
+    -webkit-transition:.2s linear;
+}
+
+.inactive:hover {
+  background: #333;
+  color: #ccc;
+}
+
+.submenu-ebene2 {
+     display: none;   
+}
+
+.submenu-ebene3 {
+     display: none;   
+}
+}

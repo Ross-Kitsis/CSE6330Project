@@ -47,7 +47,92 @@ public class issueFormatterTable extends SimpleTagSupport
 				lp.put(key, (LikelyProblem) i);
 			}
 		}
+		/*
+		os.write("<li>");
+		os.write("<ul class=\"firstUl\"");
+		os.write("<li class=\"submenu-l2 link inactive closed\">Errors " + errors.size() + "</li>");
+		os.write("<li>");
+		os.write("<ul class=\"submenu-l2\">");
+		os.write("<li class\"\">");
+		*/
 		
+		 os.write("<li>");
+		 	os.write("<ul class=\"firstUl\">");
+		 		os.write("<li class=\"submenu-ebene1 link inactive closed\">Link 1</li>");
+		 		os.write("<li>");
+		 		os.write("<ul class=\"submenu-ebene2\">");
+		 			os.write("<li class=\"link inactive closed\">Sublink 1</li>");
+		 			os.write("<li>");
+		 				os.write("<ul class=\"submenu-ebene3\">");
+		 					os.write("<li class=\"link inactive\">Snippet 1</li>");
+		 					os.write("<li class=\"link inactive\">Snippet 2</li>");
+		 				os.write("</ul>");
+		 			os.write("</li>");
+                os.write("</li>");
+            //os.write("/ul");
+         os.write("</li>");
+		 			
+            os.write("<li class=\"link inactive closed\">Sublink 2</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene3\">");
+            os.write("<li class=\"link inactive\">Snippet 1</li>");
+            os.write("<li class=\"link inactive\">Snippet 2</li>");
+            os.write("</ul>");
+            os.write("</li>");
+
+            os.write("</ul>");
+            os.write("</li>");
+             
+            os.write("<li class=\"submenu-ebene1 link inactive closed\">Link 2</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene2\">");
+            os.write("<li class=\"link inactive closed\">Sublink 1</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene3\">");
+            os.write("<li class=\"link inactive\">Snippet 1</li>");
+            os.write("<li class=\"link inactive\">Snippet 2</li>");
+            os.write("</ul>");
+            os.write("</li>");
+                     
+            os.write("<li class=\"link inactive closed\">Sublink 2</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene3\">");
+            os.write("<li class=\"link inactive\">Snippet 1</li>");
+            os.write("<li class=\"link inactive\">Snippet 2</li>");
+            os.write("</ul>");
+            os.write("</li>");
+
+            os.write("</ul>");
+            os.write("</li>");
+
+            os.write("<li class=\"submenu-ebene1 link inactive closed\">Link 3</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene2\">");
+            os.write("<li class=\"link inactive closed\">Sublink 1</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene3\">");
+            os.write("<li class=\"link inactive\">Snippet 1</li>");
+            os.write("<li class=\"link inactive\">Snippet 2</li>");
+            os.write("</ul>");
+            os.write("</li>");
+                     
+            os.write("<li class=\"link inactive closed\">Sublink 2</li>");
+            os.write("<li>");
+            os.write("<ul class=\"submenu-ebene3\">");
+            os.write("<li class=\"link inactive\">Snippet 1</li>");
+            os.write("<li class=\"link inactive\">Snippet 2</li>");
+            os.write("</ul>");
+            os.write("</li>");
+
+            os.write("</ul>");
+            os.write("</li>");
+
+            os.write("</ul>");
+            os.write("</li>");
+		
+		
+		
+		/*
 		os.write("\n");
 		os.write("<tr class=\"issue\">");
 		os.write("\n");
@@ -274,7 +359,7 @@ public class issueFormatterTable extends SimpleTagSupport
 			os.write("<td>"+rec+"</td>");
 			os.write("</tr>");
 		}
-		
+		*/
 	}
 	
 	public void setIssue(Map<Integer,Issue> issue)

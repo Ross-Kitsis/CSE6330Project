@@ -24,11 +24,96 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
 		Num Potential Errors: ${results.numPotentialProblem}
 		<br /> 
 		Num Likely Errors: ${results.numLikelyProblem} <br/>
+		</div>
+	
+	<div id="sidebar-wrapper">
+            
+            <ul id="sidebar-left">
+                
+                <li>
+                    <ul class="firstUl">
+                        <li class="submenu-ebene1 link inactive closed">Errors: ${errors.size()}</li>
+                        <li>
+                            <ul class="submenu-ebene2">
+                            	<c:forEach var="e" items="${errors}">
+                            	    <li class="link inactive closed">Error ID: ${e.key}</li>
+                            		<li>
+                                    	<ul class="submenu-ebene3">                        
+                            	    		<li class="link inactive" >${e.value.guideline}</li>
+                            	    		<li class="link inactive">${e.value.description}</li>
+                            	    		<li class="link inactive">${e.value.repair}</li>
+                            	    		<li class="link inactive closed">Webpages (${e.value.webpages.size()})</li>
+                            	    		<li>
+                            	    			<ul class="submenu-ebene4">
+                            	    				<c:forEach var="w" items="${e.value.webpages}">
+                            	    					<li class="link inactive">URL: ${w.url}</li>
+                            	    					<li class="link inactive">Row Number: ${w.lineNum}</li>
+                            	    					<li class="link inactive">Column Number: ${w.colNum}</li>
+                            	    					<li class="link inactive">Error Source Code: ${w.errorSourceCode}</li>
+                            	    				</c:forEach>
+                            	    			</ul>
+                            	    		</li>
+                                    	</ul>
+                                	</li>
+                            	</c:forEach>
+                            </ul>
+                        </li>
+                        
+                        <li class="submenu-ebene1 link inactive closed">Potential Problems: ${potential.size()}</li>
+                        <li>
+                            <ul class="submenu-ebene2">
+                            	<c:forEach var="e" items="${potential}">
+                            	    <li class="link inactive closed">Error ID: ${e.key}</li>
+                            		<li>
+                                    	<ul class="submenu-ebene3">                        
+                            	    		<li class="link inactive" >${e.value.guideline}</li>
+                            	    		<li class="link inactive">${e.value.description}</li>
+                            	    		<li class="link inactive closed">Webpages (${e.value.webpages.size()})</li>
+										<li>
+											<ul class="submenu-ebene4">
+												<ul class="submenu-ebene4">
+													<c:forEach var="w" items="${e.value.webpages}">
+														<li class="link inactive">URL: ${w.url}</li>
+														<li class="link inactive">Row Number: ${w.lineNum}</li>
+														<li class="link inactive">Column Number: ${w.colNum}</li>
+														<li class="link inactive">Error Source Code:
+															${w.errorSourceCode}</li>
+													</c:forEach>
+												</ul>
+										</li>
+									</ul>
+                                	</li>
+                            	</c:forEach>
+                            </ul>
+                        </li>
+
+                        <li class="submenu-ebene1 link inactive closed">Link 3</li>
+                        <li>
+                            <ul class="submenu-ebene2">
+                                <li class="link inactive closed">Sublink 1</li>
+                                <li>
+                                    <ul class="submenu-ebene3">
+                                        <li class="link inactive">Snippet 1</li>
+                                        <li class="link inactive">Snippet 2</li>
+                                    </ul>
+                                </li>
+                                
+                                <li class="link inactive closed">Sublink 2</li>
+                                <li>
+                                    <ul class="submenu-ebene3">
+                                        <li class="link inactive">Snippet 1</li>
+                                        <li class="link inactive">Snippet 2</li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
 	</div>
-	<table id="results" border="0">
-		<m:ist issue="${results.map}"></m:ist>
-	</table>
-		
+	
 	<script src="${pageContext.request.contextPath}/js/collapse.js">temp</script>
 </body>
 </html>
