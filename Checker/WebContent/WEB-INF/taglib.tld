@@ -26,4 +26,17 @@
         </attribute>
     </tag>
     
+        <tag>
+        <name>ist</name>
+        <tag-class>tags.issueFormatterTable</tag-class>
+        <body-content>scriptless</body-content>
+        <info>This tag prints issue information based on the type of issue in a table formatter for collapsable html </info>
+        <attribute>
+            <name>issue</name>
+            <required>true</required>
+            <description>The issue to print</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
 </taglib>

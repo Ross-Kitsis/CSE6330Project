@@ -3,18 +3,22 @@ package issues;
 import java.util.*;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import model.WebPage;
 
+/**
+ * The error class represents an issue which has been identified as an error.
+ * The error class extends the Issue class and builds of the functionality defined in the Issue class
+ *
+ */
 @XmlRootElement
 public class PotentialProblem extends Issue
 {
 	
 	protected String recommendation;
 	
-	/*
-	 * Required for xml binding
+	/**
+	 * Default constructor required for xml binding
 	 */
 	public PotentialProblem()
 	{
