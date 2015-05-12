@@ -123,9 +123,32 @@ public class issueFormatterTable extends SimpleTagSupport
 			while(it.hasNext())
 			{
 				WebPage w = it.next();
+				
+				String url = escapeHTML(w.getUrl());
+				String lineNum = escapeHTML(Integer.toString(w.getLineNum()));
+				String colNum = escapeHTML(Integer.toString(w.getColNum()));
+				String errorSrcCode = escapeHTML(w.getErrorSourceCode());
+				
 				if(it.hasNext())
 				{
-					
+					os.write("\n");
+					os.write("<tr>");
+					os.write("\n");
+					os.write("<td>URL</td>");
+					os.write("\n");
+					os.write("<td>"+url+"</td>");
+					os.write("\n");
+					os.write("</tr>");
+				}else
+				{
+					os.write("\n");
+					os.write("<tr class=\"endwebsites\">");
+					os.write("\n");
+					os.write("<td>URL</td>");
+					os.write("\n");
+					os.write("<td>"+url+"</td>");
+					os.write("\n");
+					os.write("</tr>");
 				}
 			}
 			
