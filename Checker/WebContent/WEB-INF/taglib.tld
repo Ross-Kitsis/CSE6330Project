@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sub.com/xml/ns/j2ee
+		http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+		version="2.0">
+
+	<tlibversion>1.1</tlibversion>
+	<jspvserion>2.0</jspvserion>
+	
+    <description>Custom tag library</description>
+    <lib-version>1.0</lib-version>
+    <short-name>CustomTagLib</short-name>
+    
+    
+    <tag>
+        <name>issueFormatter</name>
+        <tag-class>tags.issueFormatter</tag-class>
+        <body-content>scriptless</body-content>
+        <info>This tag prints issue information based on the type of issue </info>
+        <attribute>
+            <name>issue</name>
+            <required>true</required>
+            <description>The issue to print</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+</taglib>

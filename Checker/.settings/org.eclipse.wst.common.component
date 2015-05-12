@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Checker">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="jsoup-1.8.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jsoup-1.8.2/jsoup-1.8.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-validator-1.4.1-javadoc.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-validator-1.4.1-javadoc/commons-validator-1.4.1-javadoc">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsoup-1.8.2-javadoc.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jsoup-1.8.2-javadoc/jsoup-1.8.2-javadoc">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-lang3-3.4/commons-lang3-3.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-validator-1.4.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-validator-1.4.1/commons-validator-1.4.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.4-javadoc.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-lang3-3.4-javadoc/commons-lang3-3.4-javadoc">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="Checker"/>
+        <property name="java-output-path" value="/Checker/build/classes"/>
+    </wb-module>
+</project-modules>

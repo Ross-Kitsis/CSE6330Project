@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+>
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:c="http://java.sun.com/jsp/jstl/core"
+xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
+<head>
+	
+	<script src="http://d3js.org/d3.v2.min.js" charset="utf-8"></script>
+	<title>Results</title>
+</head>
+<body>
+
+		<div id="summary">
+		Num Errors: ${results.numError}
+		 <br /> 
+		Num Potential Errors: ${results.numPotentialProblem}
+		<br /> 
+		Num Likely Errors: ${results.numLikelyProblem} <br/>
+	</div>
+	<div id="results">
+	<m:issueFormatter issue="${results.map}"></m:issueFormatter>
+	</div>
+	
+	
+	
+	<div id="chart">
+		
+	</div>
+			
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/vis.js"></script>
+		
+</body>
+</html>
+</jsp:root>

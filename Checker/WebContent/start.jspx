@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+		  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Accessibility Web Crawler Start Page</title>
+	<link rel="StyleSheet" href="${pageContext.request.contextPath}/res/mc.css" type="text/css" title="WACrawler" media="screen, print"/>
+</head>
+<body>
+	<FORM action="" method="get" class="mainTable">
+		<fieldset>
+			<TABLE>
+				<TR>
+					<td><label for="URL" accesskey="url">Starting URL</label></td>
+					<td><label for="prefix" accesskey="prefix">Use Prefix?</label></td>
+					<td><label for="depth" accesskey="depth">Crawl Depth</label></td>
+				</TR>
+				<tr>
+					<td><input type="text" name="url" id="url" value="${url}" /></td>
+					<c:choose>
+						<c:when test="${empty isPrefix}">
+							<td><input type="checkbox" name="isPrefix" id="prefix"
+								value="prefix" /></td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="checkbox" name="isPrefix" id="prefix"
+								value="prefix" checked="checked" /></td>
+						</c:otherwise>
+					</c:choose>
+
+					<td><input type="number" name="depth" id="depth"
+						value="${depth}" /></td>
+					<td><input type="submit" name="submit" value="Submit" id="inputSubmit"/></td>
+				</tr>
+			</TABLE>
+			<div class="error">${error}</div>
+		</fieldset>
+	</FORM>
+
+</body>
+</html>
+</jsp:root>
