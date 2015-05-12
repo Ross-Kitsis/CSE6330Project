@@ -1,12 +1,4 @@
 @CHARSET "UTF-8";
-tr, td
-{
-    border: 1px solid black;
-}
-tr.header
-{
-    cursor:pointer;
-}
 
 #sidebar-wrapper {
     width: 50%;
@@ -16,6 +8,7 @@ tr.header
 }   
 
 #sidebar-left {
+	
     width: 800px;
     height: auto;
     font-size: 14px;

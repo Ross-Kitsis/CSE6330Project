@@ -16,16 +16,7 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
 	<script src="//code.jquery.com/jquery-1.11.3.min.js">temp</script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js">temp</script>
 </head>
-<body>
-
-		<div id="summary">
-		Num Errors: ${results.numError}
-		 <br /> 
-		Num Potential Errors: ${results.numPotentialProblem}
-		<br /> 
-		Num Likely Errors: ${results.numLikelyProblem} <br/>
-		</div>
-	
+<body>	
 	<div id="sidebar-wrapper">
             
             <ul id="sidebar-left">
@@ -39,10 +30,10 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
                             	    <li class="link inactive closed">Error ID: ${e.key}</li>
                             		<li>
                                     	<ul class="submenu-ebene3">                        
-                            	    		<li class="link inactive" >${e.value.guideline}</li>
-                            	    		<li class="link inactive">${e.value.description}</li>
-                            	    		<li class="link inactive">${e.value.repair}</li>
-                            	    		<li class="link inactive closed">Webpages (${e.value.webpages.size()})</li>
+                            	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
+                            	    		<li class="link inactive">Description: ${e.value.description}</li>
+                            	    		<li class="link inactive">Repair: ${e.value.repair}</li>
+                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
                             	    		<li>
                             	    			<ul class="submenu-ebene4">
                             	    				<c:forEach var="w" items="${e.value.webpages}">
@@ -66,46 +57,50 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
                             	    <li class="link inactive closed">Error ID: ${e.key}</li>
                             		<li>
                                     	<ul class="submenu-ebene3">                        
-                            	    		<li class="link inactive" >${e.value.guideline}</li>
-                            	    		<li class="link inactive">${e.value.description}</li>
-                            	    		<li class="link inactive closed">Webpages (${e.value.webpages.size()})</li>
-										<li>
-											<ul class="submenu-ebene4">
-												<ul class="submenu-ebene4">
-													<c:forEach var="w" items="${e.value.webpages}">
-														<li class="link inactive">URL: ${w.url}</li>
-														<li class="link inactive">Row Number: ${w.lineNum}</li>
-														<li class="link inactive">Column Number: ${w.colNum}</li>
-														<li class="link inactive">Error Source Code:
-															${w.errorSourceCode}</li>
-													</c:forEach>
-												</ul>
-										</li>
-									</ul>
+                            	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
+                            	    		<li class="link inactive">Description: ${e.value.description}</li>
+                            	    		<li class="link inactive">Recommendation: ${e.value.recommendation}</li>
+                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
+                            	    		<li>
+                            	    			<ul class="submenu-ebene4">
+                            	    				<c:forEach var="w" items="${e.value.webpages}">
+                            	    					<li class="link inactive">URL: ${w.url}</li>
+                            	    					<li class="link inactive">Row Number: ${w.lineNum}</li>
+                            	    					<li class="link inactive">Column Number: ${w.colNum}</li>
+                            	    				  	<li class="link inactive">Error Source Code: ${w.errorSourceCode}</li>
+                            	    				</c:forEach>
+                            	    			</ul> 
+                            	    		</li>
+                                    	</ul>
                                 	</li>
                             	</c:forEach>
                             </ul>
                         </li>
 
-                        <li class="submenu-ebene1 link inactive closed">Link 3</li>
+                        <li class="submenu-ebene1 link inactive closed">Likely Problems: ${likely.size()}</li>
                         <li>
                             <ul class="submenu-ebene2">
-                                <li class="link inactive closed">Sublink 1</li>
-                                <li>
-                                    <ul class="submenu-ebene3">
-                                        <li class="link inactive">Snippet 1</li>
-                                        <li class="link inactive">Snippet 2</li>
-                                    </ul>
-                                </li>
-                                
-                                <li class="link inactive closed">Sublink 2</li>
-                                <li>
-                                    <ul class="submenu-ebene3">
-                                        <li class="link inactive">Snippet 1</li>
-                                        <li class="link inactive">Snippet 2</li>
-                                    </ul>
-                                </li>
-
+                            	<c:forEach var="e" items="${likely}">
+                            	    <li class="link inactive closed">Error ID: ${e.key}</li>
+                            		<li>
+                                    	<ul class="submenu-ebene3">                        
+                            	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
+                            	    		<li class="link inactive">Description: ${e.value.description}</li>
+                            	    		<li class="link inactive">Recommendation: ${e.value.recommendation}</li>
+                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
+                            	    		<li>
+                            	    			<ul class="submenu-ebene4">
+                            	    				<c:forEach var="w" items="${e.value.webpages}">
+                            	    					<li class="link inactive">URL: ${w.url}</li>
+                            	    					<li class="link inactive">Row Number: ${w.lineNum}</li>
+                            	    					<li class="link inactive">Column Number: ${w.colNum}</li>
+                            	    				  	<li class="link inactive">Error Source Code: ${w.errorSourceCode}</li>
+                            	    				</c:forEach>
+                            	    			</ul> 
+                            	    		</li>
+                                    	</ul>
+                                	</li>
+                            	</c:forEach>
                             </ul>
                         </li>
 

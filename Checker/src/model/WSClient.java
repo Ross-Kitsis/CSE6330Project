@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,61 +26,6 @@ import org.xml.sax.SAXException;
 
 public class WSClient {
 
-	/*
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		
-		
-		Crawler c = new Crawler();
-		
-		String[] str_ar = c.retrieveLinks("http://www.yorku.ca", false, 1);
-		System.out.println(str_ar.length);
-		
-		for(int i = 0; i < str_ar.length; i++) 
-		{
-		
-		
-		String url = "http://achecker.ca/checkacc.php?uri=" + str_ar[i] + "& id=9a102ceff72bd0fa09feb2ae900a748951fbb7fc&output=html&guide=STANCA,WCAG2-AA&offset=10";
-		System.out.println(url);
-		
-		 Document doc = Jsoup.connect(url).timeout(0).get();
-	        Elements links = doc.select("a[href]");
-	        Elements media = doc.select("[src]");
-	        Elements imports = doc.select("link[href]");
-
-	        print("\nMedia: (%d)", media.size());
-	        for (Element src : media) {
-	            if (src.tagName().equals("img"))
-	                print(" * %s: <%s> %sx%s (%s)",
-	                        src.tagName(), src.attr("abs:src"), src.attr("width"), src.attr("height"),
-	                        trim(src.attr("alt"), 20));
-	            else
-	                print(" * %s: <%s>", src.tagName(), src.attr("abs:src"));
-	        }
-
-	        print("\nImports: (%d)", imports.size());
-	        for (Element link : imports) {
-	            print(" * %s <%s> (%s)", link.tagName(),link.attr("abs:href"), link.attr("rel"));
-	        }
-
-	        print("\nLinks: (%d)", links.size());
-	        for (Element link : links) {
-	            print(" * a: <%s>  (%s)", link.attr("abs:href"), trim(link.text(), 35));
-	        }
-	    }
-	}
-	 private static void print(String msg, Object... args) {
-	        System.out.println(String.format(msg, args));
-	    }
-
-	    private static String trim(String s, int width) {
-	        if (s.length() > width)
-	            return s.substring(0, width-1) + ".";
-	        else
-	            return s;
-	    }
-		
-*/
 	private final String id = "9a102ceff72bd0fa09feb2ae900a748951fbb7fc";
 	private final String output = "rest";
 	private final String guide = "WCAG2-AA";
@@ -132,6 +78,11 @@ public class WSClient {
 						int colNum = Integer.parseInt(result.select("columnNum").get(0).text().trim()); //Col number
 						String errMsg = result.select("errorMsg").get(0).text().trim(); //Error msg
 						String cause = result.select("errorSourceCode").get(0).text().trim(); //Cause
+						
+						/*
+						 * Sanitize cause to remove any tags or HTML
+						 */
+						cause = StringEscapeUtils.escapeHtml4(cause);
 						
 						//Extract ID from errMsg to get ID
 						int id = Integer.parseInt(errMsg.substring(errMsg.indexOf("?id") + 4,errMsg.indexOf("\" ")));
@@ -229,13 +180,5 @@ public class WSClient {
 		System.out.println(toReturn.size());
 		
 		return toReturn;
-	}
-
-	public static org.w3c.dom.Document buildXMLDoc(String xml) throws ParserConfigurationException, SAXException, IOException
-	{
-		DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = fac.newDocumentBuilder();
-		InputSource is = new InputSource(new StringReader(xml));
-		return builder.parse(is);
 	}
 }
