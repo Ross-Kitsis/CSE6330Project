@@ -12,6 +12,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ *
+ * The wrapper class encapsulates the map of issues and 
+ *
+ */
 @XmlRootElement(name="collectedData")
 @XmlType (propOrder = {"numError","numPotentialProblem","numLikelyProblem","map"})
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,7 +24,7 @@ public class errorWrapper
 {
 	@XmlElement(name="Issues")
 	private Map<Integer,Issue> map = new LinkedHashMap<Integer,Issue>();
-	@XmlElement(name="Num_Distinct_Issues")
+	@XmlElement(name="Num_Distinct_Errors")
 	private int numError = 0;
 	@XmlElement(name="Num_Distinct_Potential_Problems")
 	private int numPotentialProblem = 0;

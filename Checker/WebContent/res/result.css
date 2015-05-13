@@ -3,7 +3,7 @@
 #sidebar-wrapper {
     width: 50%;
     height: auto;
-    float: left;
+    /* float: left; */
     position: relative; 
 }   
 
@@ -22,7 +22,8 @@
 
 .submenu-ebene1 {
   background: #ff8000;
-  border-bottom: 1px solid #222;
+  /* border-bottom: 1px solid #222; */
+  border-bottom: 1px solid #858585;
   font-size: 1em;
   font-weight: normal;
   cursor: pointer;
@@ -36,7 +37,8 @@
 .submenu-ebene2 {  
   font-size: 1em;
   font-weight: normal;
-  background: #222;
+  /* background: #222; */
+  background: #858585;
   color: #ccc;
 }
 
@@ -45,7 +47,9 @@
   font-weight: normal;
   margin-left: 0px;
   cursor: pointer;
-  background: #222;
+ 
+ /* background: #222; */
+ background: #858585;
   color: #ccc;
 }
 
@@ -54,7 +58,8 @@
 }
 
 .link, .single-link {
-  border-bottom: 1px dotted #222;
+  /*border-bottom: 1px dotted #222;*/
+  border-bottom: 1px dotted #858585;
   padding: 10px;
 }
 
@@ -89,13 +94,16 @@
      display: none;   
 }
 
-.eec:nth-child(2n+0)
+.eec div:nth-child(even)
 {
-	color: #ccc;
+	color: #898989;
+	/*background: #898989;*/
+}
+
+.eec div:nth-child(odd)
+{
+	color: #ff8000;
+	background: #ff8000;
 	
 }
 
-.eecw:nth-child(2n+0)
-{
-	color: #ccc;
-}
