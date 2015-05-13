@@ -28,13 +28,13 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
                             	<c:forEach var="e" items="${errors}">
                             	    <li class="link inactive closed">Error ID: ${e.key}</li>
                             		<li>
-                                    	<ul class="submenu-ebene3">                        
+                                    	<ul class="submenu-ebene3 eec">                        
                             	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
                             	    		<li class="link inactive">Description: ${e.value.description}</li>
                             	    		<li class="link inactive">Repair: ${e.value.repair}</li>
-                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
+                            	    		<li class="link inactive closed">Instances ${e.value.webpages.size()}</li>
                             	    		<li>
-                            	    			<ul class="submenu-ebene4">
+                            	    			<ul class="submenu-ebene4 eecw">
                             	    				<c:forEach var="w" items="${e.value.webpages}">
                             	    					<li class="link inactive">URL: ${w.url}</li>
                             	    					<li class="link inactive">Row Number: ${w.lineNum}</li>
@@ -55,13 +55,13 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
                             	<c:forEach var="e" items="${potential}">
                             	    <li class="link inactive closed">Error ID: ${e.key}</li>
                             		<li>
-                                    	<ul class="submenu-ebene3">                        
+                                    	<ul class="submenu-ebene3 eec">                        
                             	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
                             	    		<li class="link inactive">Description: ${e.value.description}</li>
                             	    		<li class="link inactive">Recommendation: ${e.value.recommendation}</li>
-                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
+                            	    		<li class="link inactive closed">Instances ${e.value.webpages.size()}</li>
                             	    		<li>
-                            	    			<ul class="submenu-ebene4">
+                            	    			<ul class="submenu-ebene4 eecw">
                             	    				<c:forEach var="w" items="${e.value.webpages}">
                             	    					<li class="link inactive">URL: ${w.url}</li>
                             	    					<li class="link inactive">Row Number: ${w.lineNum}</li>
@@ -82,13 +82,13 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
                             	<c:forEach var="e" items="${likely}">
                             	    <li class="link inactive closed">Error ID: ${e.key}</li>
                             		<li>
-                                    	<ul class="submenu-ebene3">                        
+                                    	<ul class="submenu-ebene3 eec">                        
                             	    		<li class="link inactive" >Guideline: ${e.value.guideline}</li>
                             	    		<li class="link inactive">Description: ${e.value.description}</li>
                             	    		<li class="link inactive">Recommendation: ${e.value.recommendation}</li>
-                            	    		<li class="link inactive closed">Webpages ${e.value.webpages.size()}</li>
+                            	    		<li class="link inactive closed">Instances ${e.value.webpages.size()}</li>
                             	    		<li>
-                            	    			<ul class="submenu-ebene4">
+                            	    			<ul class="submenu-ebene4 eecw">
                             	    				<c:forEach var="w" items="${e.value.webpages}">
                             	    					<li class="link inactive">URL: ${w.url}</li>
                             	    					<li class="link inactive">Row Number: ${w.lineNum}</li>

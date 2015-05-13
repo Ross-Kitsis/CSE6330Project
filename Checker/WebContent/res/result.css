@@ -88,4 +88,14 @@
 .submenu-ebene3 {
      display: none;   
 }
+
+.eec:nth-child(2n+0)
+{
+	color: #ccc;
+	
+}
+
+.eecw:nth-child(2n+0)
+{
+	color: #ccc;
 }

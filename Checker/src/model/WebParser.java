@@ -6,7 +6,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+/**
+ * 
+ *
+ */
 public class WebParser 
 {
 	private String url;
@@ -41,11 +44,7 @@ public class WebParser
 	{
 		String toReturn = "";
 		
-		//Elements h2 = doc.select("ul");
-		//Elements li = h2.get(1).select("li");
-		
 		Elements lists = doc.select("li");
-		//System.out.println(lists);
 		
 		Element li = null;
 		for(Element e:lists)
@@ -56,9 +55,7 @@ public class WebParser
 				break;
 			}
 		}
-		
-		//System.out.println(li);
-		
+				
 		Element guideline = li.select("span").get(0);
 		
 		String[] temp = guideline.text().split(":");
@@ -66,9 +63,6 @@ public class WebParser
 		
 		Element e = li.select("span").get(1);
 		this.guideLine = e.text().trim();
-		
-		//System.out.println(recommendation);
-		//System.out.println(guideLine);
 		
 		this.getDes(doc.toString());
 		
@@ -84,7 +78,6 @@ public class WebParser
 				String toParse = lines[i+1];
 				errorMsg = toParse.substring(toParse.indexOf(">") + 1,toParse.lastIndexOf("</"));
 				errorMsg = Jsoup.parse(errorMsg).text();
-			//	System.out.println(errorMsg);
 			}
 		}
 	}

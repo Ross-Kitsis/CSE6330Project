@@ -103,10 +103,7 @@ public class Crawler
 					}
 				}
 			}
-		}
-		
-		//System.out.println(links);
-		
+		}		
 		return links.toArray(new String[links.size()]);
 		//return links;
 	}
@@ -168,6 +165,7 @@ public class Crawler
 		Document doc;
 		try 
 		{
+			//Get the document to parse; set user agent to firefox
 			doc=Jsoup.connect(url).timeout(0).userAgent("Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0").get();
 			
 			//System.out.println(doc);
@@ -186,7 +184,6 @@ public class Crawler
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return allLinks;
