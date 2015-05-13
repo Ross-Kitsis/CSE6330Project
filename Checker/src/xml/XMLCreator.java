@@ -1,28 +1,35 @@
 package xml;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.FileSystem;
-
-import issues.Issue;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-
+/**
+ * The XMLCreator creates the XML uses JAXB to marshal the data in the errorWrapper class into an XML file.
+ * The XML file is then written to disk in the passed location. 
+ */
 public class XMLCreator 
 {
+	/**
+	 * Constructs an XMLCreator
+	 */
 	public XMLCreator()
 	{
 		
 	}
-	
+	/**
+	 * Creates the XML file at the passed location with the data in the errorWrapper
+	 * @param location The location where to create the XML file
+	 * @param ew The error wrapper containing the data to write to the XML file
+	 * @throws JAXBException Thrown if an error occurs during marshaling
+	 * @throws IOException Thrown if an error occurs while writing the XML file to disk
+	 */
 	public void createXML(String location, errorWrapper ew) throws JAXBException, IOException
 	{
-		//JAXBContext jc =JAXBContext.newInstance(errorWrapper.class);
 		JAXBContext jc =JAXBContext.newInstance(errorWrapper.class, issues.LikelyProblem.class, issues.Error.class, issues.PotentialProblem.class, model.WebPage.class);
 		
 		System.out.println("Location: " + location);
@@ -36,6 +43,7 @@ public class XMLCreator
 		
 		os = new FileOutputStream(f);
 		
+		//Marshal the data to XML file
 		Marshaller m = jc.createMarshaller();
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.marshal(ew, os);
