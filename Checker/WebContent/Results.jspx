@@ -18,7 +18,6 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
 </head>
 <body>	
 	<div id="sidebar-wrapper">
-            
             <ul id="sidebar-left">
                 
                 <li>
@@ -110,6 +109,9 @@ xmlns:m="urn:jsptld:/WEB-INF/taglib.tld">
 	</div>
 	
 	<script src="${pageContext.request.contextPath}/js/collapse.js">temp</script>
+	
+	<a href="${pageContext.request.contextPath}/Results/${xmlPath}">Download results in XML format</a>
+	
 </body>
 </html>
 </jsp:root>

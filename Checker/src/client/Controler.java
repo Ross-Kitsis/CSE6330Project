@@ -170,6 +170,11 @@ public class Controler extends HttpServlet {
 				request.setAttribute("likely", lp);
 				
 				/*
+				 * Set path to download xml containing results
+				 */
+				request.setAttribute("xmlPath", fileName);
+				
+				/*
 				 * Set the results.jspx page as the page to forward the user to
 				 */
 				jspTarget = resultsPage;
