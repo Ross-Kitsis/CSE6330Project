@@ -4,14 +4,9 @@ import issues.LikelyProblem;
 import issues.PotentialProblem;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
@@ -19,28 +14,37 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-//Potential Problems, Likely problems, Errors
-
+/**
+ * The WSClient (Web Service Client) interfaces with AChecker, sends the webpages to evaluate, receives the results from AChecker,
+ * and stores them in a data structure for further parsing. 
+ *
+ */
 public class WSClient {
 
-	private final String id = "9a102ceff72bd0fa09feb2ae900a748951fbb7fc";
-	private final String output = "rest";
-	private final String guide = "WCAG2-AA";
-	private final String checker = "http://achecker.ca/checkacc.php";
-	private URLEncoder encoder;
-	private final int timeout = 0;
+	private final String id = "9a102ceff72bd0fa09feb2ae900a748951fbb7fc"; //Unique ID required to access AChecker web API
+	private final String output = "rest"; //Output type (rest or html)
+	private final String guide = "WCAG2-AA"; //Evaluation guide (Currently set to WCAG 2.0 AA)
+	private final String checker = "http://achecker.ca/checkacc.php"; //Url of AChecker
+	private final int timeout = 0; //Timeout value before abandoning request (0 is no timeout)
+	//Types of problems encountered
 	private String potentialProblem = "Potential Problem";
 	private String error = "Error";
 	private String knownProblem = "Likely Problem";
 	
-	
+	/**
+	 * Constructs a web service client object with default values
+	 */
 	public WSClient()
 	{
 	}
-	
+	/**
+	 * Sends each url provided to achecker, parses the results and places them into a map
+	 * @param url An array of strings containing the URLs to send to AChecker for evaluation
+	 * @return A map containing the parsed issues. Keys of the map are unique identifies for each issue; values are a child object of the Issue
+	 * class based on the type of issue (Error, Potential Problem or Likely Problem)
+	 * @throws UnsupportedEncodingException
+	 */
 	public Map<Integer,Issue> getIssues(String[] url) throws UnsupportedEncodingException
 	{
 		Map<Integer,Issue> toReturn = new LinkedHashMap<Integer,Issue>();
@@ -52,13 +56,19 @@ public class WSClient {
 		{
 			try 
 			{
+				//Encode the url (Remove special characters in the url) to all AChecker to correctly read it
 				eUri = URLEncoder.encode(uri, "UTF-8");
 				
+				//Build the query string to send to AChecker
 				toSend = checker + "?uri="+eUri+"&id="+id+"&output="+output+"&guide="+guide;
 				
+				//Send the query to AChecker
 				Document doc = Jsoup.connect(toSend).timeout(timeout).get();
+				
+				//Prepare the rest document returned for parsing
 				Document xmlDoc = Jsoup.parse(doc.toString(),"",Parser.xmlParser());
 				
+				//Retrieve the results
 				Elements resultset = xmlDoc.select("resultSet");
 				
 				//Check if there was an error
@@ -66,13 +76,14 @@ public class WSClient {
 				System.out.println("Num Errors " + errors.size());
 				if(errors.size() > 0)
 				{
-					//Some sort of error occured
-					//To Fill in later
+					//Achecker encountered an error, move onto the next webpage
 				}else
 				{
+					//Parse each result
 					Elements results = resultset.select("result");
 					for(Element result:results)
 					{
+						//Collect values to store in the data structure
 						String type = result.select("resultType").get(0).text().trim(); //Type of error
 						int lineNum = Integer.parseInt(result.select("lineNum").get(0).text().trim()); //line number
 						int colNum = Integer.parseInt(result.select("columnNum").get(0).text().trim()); //Col number
@@ -87,35 +98,24 @@ public class WSClient {
 						//Extract ID from errMsg to get ID
 						int id = Integer.parseInt(errMsg.substring(errMsg.indexOf("?id") + 4,errMsg.indexOf("\" ")));
 						
-						/*
-						
-						System.out.println("type: " + type);
-						System.out.println("linNum: " + lineNum);
-						System.out.println("colNum: " + colNum);
-						System.out.println("errMsg: " + errMsg);
-						System.out.println("cause " + cause);
-						System.out.println("id: " + id);
-						
-						*/
-						
 						//Get supplementary page for more error description
 						String supPage = errMsg.substring(errMsg.indexOf("http"),errMsg.indexOf("\" ")).trim();
-						//System.out.println("Sup Page: " + supPage);
 						
+						//Extract the error message
 						errMsg = Jsoup.parse(errMsg).text();
-						//System.out.println("New error msg " + errMsg);
 						
-						//System.out.println();
-						
+						//Create a new webpage object to store webpage specific details
 						WebPage wp = new WebPage(uri,lineNum,colNum,cause);
 						
-						
+						//Place extracte4d values in the map
 						if(toReturn.containsKey(id))
 						{
+							//Issue already encountered, add webpage to the list of webpages effected by the issue
 							Issue i = toReturn.get(id);
 							i.addWebpage(wp);
 						}else
 						{
+							//Issue has not been encountered before, create a new issue object and add the webpage to its
 							String recommendation = "";
 							String guideline = "";
 							String description = "";
@@ -137,9 +137,11 @@ public class WSClient {
 								//Result is an error
 								String repair = Jsoup.parse(result.select("repair").get(0).text().trim()).text(); //Type of error
 								
+								/*
 								recommendation = parse.getRecommendation();
 								guideline = parse.getGuideLine();
 								description = parse.getErrorMsg();
+								*/
 								
 								Issue i = new issues.Error(type, repair, guideline, description);
 								i.addWebpage(wp);
@@ -148,18 +150,10 @@ public class WSClient {
 							}else if(type.equals(knownProblem))
 							{
 								//Result is a known problem
+								/*
 								recommendation = parse.getRecommendation();
 								guideline = parse.getGuideLine();
-								description = parse.getErrorMsg();
-								
-								/*
-								System.out.println("Type: " + type);
-								System.out.println("Causing code " + cause);
-								System.out.println("Recommendation " + recommendation);
-								System.out.println("Guideline " + guideline);
-								System.out.println("Issue Description " + description);
-								System.out.println();
-								*/
+								description = parse.getErrorMsg();*/
 								
 								Issue i = new LikelyProblem(type,recommendation, guideline, description);
 								i.addWebpage(wp);
@@ -169,16 +163,11 @@ public class WSClient {
 					}
 				}
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				throw new UnsupportedEncodingException("URL encoding not support, please contact the developer");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		
-		System.out.println(toReturn.size());
-		
+		}		
 		return toReturn;
 	}
 }
