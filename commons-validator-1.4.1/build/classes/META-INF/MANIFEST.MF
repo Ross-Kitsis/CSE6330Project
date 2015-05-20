@@ -1,0 +1,81 @@
+Manifest-Version: 1.0
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.commons.validator
+Archiver-Version: Plexus Archiver
+Built-By: britter
+Bnd-LastModified: 1420914346608
+Implementation-Vendor-Id: org.apache
+Specification-Title: Apache Commons Validator
+Bundle-DocURL: http://commons.apache.org/proper/commons-validator/
+Include-Resource: META-INF/LICENSE.txt=LICENSE.txt,META-INF/NOTICE.txt
+ =NOTICE.txt,org/apache/commons/validator/digester-rules.xml=src/main/
+ resources/org/apache/commons/validator/digester-rules.xml,org/apache/
+ commons/validator/resources/validator_1_0.dtd=src/main/resources/org/
+ apache/commons/validator/resources/validator_1_0.dtd,org/apache/commo
+ ns/validator/resources/validator_1_0_1.dtd=src/main/resources/org/apa
+ che/commons/validator/resources/validator_1_0_1.dtd,org/apache/common
+ s/validator/resources/validator_1_1.dtd=src/main/resources/org/apache
+ /commons/validator/resources/validator_1_1.dtd,org/apache/commons/val
+ idator/resources/validator_1_1_3.dtd=src/main/resources/org/apache/co
+ mmons/validator/resources/validator_1_1_3.dtd,org/apache/commons/vali
+ dator/resources/validator_1_2_0.dtd=src/main/resources/org/apache/com
+ mons/validator/resources/validator_1_2_0.dtd,org/apache/commons/valid
+ ator/resources/validator_1_3_0.dtd=src/main/resources/org/apache/comm
+ ons/validator/resources/validator_1_3_0.dtd,org/apache/commons/valida
+ tor/resources/validator_1_4_0.dtd=src/main/resources/org/apache/commo
+ ns/validator/resources/validator_1_4_0.dtd,org/apache/commons/validat
+ or/javascript/validateByte.js=src/javascript/org/apache/commons/valid
+ ator/javascript/validateByte.js,org/apache/commons/validator/javascri
+ pt/validateCreditCard.js=src/javascript/org/apache/commons/validator/
+ javascript/validateCreditCard.js,org/apache/commons/validator/javascr
+ ipt/validateDate.js=src/javascript/org/apache/commons/validator/javas
+ cript/validateDate.js,org/apache/commons/validator/javascript/validat
+ eEmail.js=src/javascript/org/apache/commons/validator/javascript/vali
+ dateEmail.js,org/apache/commons/validator/javascript/validateFloat.js
+ =src/javascript/org/apache/commons/validator/javascript/validateFloat
+ .js,org/apache/commons/validator/javascript/validateFloatRange.js=src
+ /javascript/org/apache/commons/validator/javascript/validateFloatRang
+ e.js,org/apache/commons/validator/javascript/validateInteger.js=src/j
+ avascript/org/apache/commons/validator/javascript/validateInteger.js,
+ org/apache/commons/validator/javascript/validateIntRange.js=src/javas
+ cript/org/apache/commons/validator/javascript/validateIntRange.js,org
+ /apache/commons/validator/javascript/validateMask.js=src/javascript/o
+ rg/apache/commons/validator/javascript/validateMask.js,org/apache/com
+ mons/validator/javascript/validateMaxLength.js=src/javascript/org/apa
+ che/commons/validator/javascript/validateMaxLength.js,org/apache/comm
+ ons/validator/javascript/validateMinLength.js=src/javascript/org/apac
+ he/commons/validator/javascript/validateMinLength.js,org/apache/commo
+ ns/validator/javascript/validateRequired.js=src/javascript/org/apache
+ /commons/validator/javascript/validateRequired.js,org/apache/commons/
+ validator/javascript/validateShort.js=src/javascript/org/apache/commo
+ ns/validator/javascript/validateShort.js,org/apache/commons/validator
+ /javascript/validateUtilities.js=src/javascript/org/apache/commons/va
+ lidator/javascript/validateUtilities.js
+Import-Package: org.apache.commons.beanutils,org.apache.commons.collec
+ tions,org.apache.commons.digester,org.apache.commons.digester.xmlrule
+ s,org.apache.commons.logging,org.xml.sax
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.4))"
+Export-Package: org.apache.commons.validator;version="1.4.1",org.apach
+ e.commons.validator.javascript;version="1.4.1",org.apache.commons.val
+ idator.resources;version="1.4.1",org.apache.commons.validator.routine
+ s;version="1.4.1",org.apache.commons.validator.routines.checkdigit;ve
+ rsion="1.4.1",org.apache.commons.validator.util;version="1.4.1"
+Bundle-Name: Apache Commons Validator
+Implementation-Title: Apache Commons Validator
+Bundle-Description: Apache Commons Validator provides the building blo
+ cks for both client side validation and server side data validation. 
+    It may be used standalone or with a framework like Struts.
+Implementation-Version: 1.4.1
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-2.3.0.201405100607
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Version: 1.4.1
+X-Compile-Target-JDK: 1.4
+Implementation-Build: UNKNOWN_BRANCH@r??????; 2015-01-10 18:25:42+0000
+X-Compile-Source-JDK: 1.4
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_25
+Specification-Version: 1.4.1
+

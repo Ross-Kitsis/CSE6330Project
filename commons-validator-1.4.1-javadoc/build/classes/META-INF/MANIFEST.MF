@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Implementation-Title: Apache Commons Validator
+Implementation-Version: 1.4.1
+Archiver-Version: Plexus Archiver
+Built-By: britter
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Apache Commons Validator
+Implementation-Vendor-Id: commons-validator
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_25
+Specification-Version: 1.4.1
+Implementation-Vendor: The Apache Software Foundation
+
