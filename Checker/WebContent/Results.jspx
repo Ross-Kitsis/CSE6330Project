@@ -72,7 +72,7 @@ xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 								<li id="numPot" class="submenu-ebene1 link inactive closed">Potential Problems: ${potential.size()}</li>
 								<li>
-									<ul class="submenu-ebene2">
+									<ul id="pTable" class="submenu-ebene2">
 										<c:forEach var="e" items="${potential}">
 											<li class="link inactive closed">Error ID: ${e.key}</li>
 											<li>
@@ -106,7 +106,7 @@ xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 								<li id="numLik" class="submenu-ebene1 link inactive closed">Likely Problems: ${likely.size()}</li>
 								<li>
-									<ul class="submenu-ebene2">
+									<ul id="lTable" class="submenu-ebene2">
 										<c:forEach var="e" items="${likely}">
 											<li class="link inactive closed">Error ID: ${e.key}</li>
 											<li>

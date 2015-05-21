@@ -10,7 +10,16 @@ var lProb = document.getElementById('numLik').innerHTML + '';
 lProb = lProb.split(" ");
 lProb = lProb[2];
 
+var dist = [
+            ['Errors', errors],
+            ['Potential Problems', ptProb],
+            ['Likely Problems', lProb]
+        ];
+
 var eCol = [];
+var pCol = [];
+var lCol = [];
+
 
 if(errors > 0)
 {
@@ -19,8 +28,9 @@ if(errors > 0)
 	for(i = 0; i < eVal.childElementCount; i++)
 	{
 		var toAdd = [];
-		toAdd.push(errTable.childNodes[i].innerHTML + '');
-		var inst = errTable.childNodes[i+1].childNodes[0].childNodes[3].innerHTML + '';
+		//Was errTable. before
+		toAdd.push(eVal.childNodes[i].innerHTML + '');
+		var inst = eVal.childNodes[i+1].childNodes[0].childNodes[3].innerHTML + '';
 		inst = inst.split(" ");
 		inst = inst[1];
 		toAdd.push(parseInt(inst));
@@ -30,14 +40,46 @@ if(errors > 0)
 	}
 }
 
+if(ptProb > 0)
+{
+	var pVal = document.getElementById('pTable');
+	console.log("pot val", pVal);
+	for(i = 0; i < pVal.childElementCount; i++)
+	{
+		var toAdd = [];
+		toAdd.push(pVal.childNodes[i].innerHTML + '');
+		var inst = pVal.childNodes[i+1].childNodes[0].childNodes[3].innerHTML + '';
+		inst = inst.split(" ");
+		inst = inst[1];
+		toAdd.push(parseInt(inst));
+		console.log("toadd", toAdd);
+		pCol.push(toAdd);
+		i++;
+	}
+}
+
+if(lProb > 0)
+{
+	var lVal = document.getElementById('lTable');
+	console.log("likely val", lVal);
+	for(i = 0; i < lVal.childElementCount; i++)
+	{
+		var toAdd = [];
+		toAdd.push(lVal.childNodes[i].innerHTML + '');
+		var inst = lVal.childNodes[i+1].childNodes[0].childNodes[3].innerHTML + '';
+		inst = inst.split(" ");
+		inst = inst[1];
+		toAdd.push(parseInt(inst));
+		console.log("toadd", toAdd);
+		lCol.push(toAdd);
+		i++;
+	}
+}
+
 var chart = c3.generate({
     bindto: '#chart',
 	data: {
-        columns: [
-            ['Errors', errors],
-            ['Potential Problems', ptProb],
-            ['Likely Problems', lProb]
-        ],
+        columns: dist,
         type : 'pie',
         onclick: function(d,i){step(d);}//,
         //onclick: function (d, i) { console.log("onclick", d, i); },
@@ -55,14 +97,38 @@ function step(d)
 		chart.load({
 			bindto: '#chart',
 			columns: eCol,
-			unload: ['Errors','Potential Problems','Likely Problems']
+			//unload: ['Errors','Potential Problems','Likely Problems']
 		});
 		
-		/*
-		chart.unload({
-			ids: ['Errors','Potential Problems','Likely Problems']
+		chart.unload(
+				['Errors','Potential Problems','Likely Problems'],
+				50
+				);
+	}else if(d.id == "Potential Problems")
+	{
+		console.log("pCol",pCol);
+		
+		chart.load({
+			bindto: '#chart',
+			columns: pCol,
+			
 		});
-		*/
-
+		
+		chart.unload(
+			['Errors','Potential Problems','Likely Problems']
+		,50);
+	}else if(d.id == "Likely Problems")
+	{
+		console.log("lCol",lCol);
+		
+		chart.load({
+			bindto: '#chart',
+			columns: lCol,
+			
+		});
+		
+		chart.unload(
+			['Errors','Potential Problems','Likely Problems']
+		,50);
 	}
 }
